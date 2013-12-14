@@ -1723,6 +1723,9 @@ fail_return:
 
 				TO_USER(pTarget)->SendUserStatusUpdate(status, USER_STATUS_INFLICT);
 			}
+			
+       if (pType->bBuffType == BUFF_TYPE_DECREASE_RESIST)
+         SendSkill();
 		}
 
 		if (bResult == 0
