@@ -81,7 +81,7 @@ void CDBAgent::ReportSQLError(OdbcError *pError)
 		pError->Source.c_str(), pError->ExtendedErrorMessage.c_str(), pError->ErrorMessage.c_str());
 
 	FastGuard lock(m_lock);
-	FILE *fp = fopen("./errors.log", "a");
+	FILE *fp = fopen("./Logs/GameServer.log", "a");
 	if (fp != nullptr)
 	{
 		fwrite(errorMessage.c_str(), errorMessage.length(), 1, fp);
