@@ -3,9 +3,8 @@
 #include "../shared/types.h"
 #include <unordered_map>
 
-#	define LUA_ENGINE_MODE						"offical"
-#	define LUA_SCRIPT_DIRECTORY					"./official_quests/"
-#	define LUA_SCRIPT_BUFFER_SIZE				20000
+#	define LUA_SCRIPT_DIRECTORY          "./Quests/"
+#	define LUA_SCRIPT_BUFFER_SIZE        20000
 
 // If defined, scripts are not cached. This is for testing/development purposes only.
 #ifdef _DEBUG
