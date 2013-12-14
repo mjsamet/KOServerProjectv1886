@@ -4309,15 +4309,15 @@ void CUser::OnDeath(Unit *pKiller)
 
 			CNpc *pNpc = TO_NPC(pKiller);
 			if (pNpc->GetType() == NPC_PATROL_GUARD || (GetZoneID() != GetNation() && GetZoneID() <= ELMORAD))
-				nExpLost = m_iMaxExp / 100;
+				nExpLost = m_iMaxExp / 1;
 			else
-				nExpLost = m_iMaxExp / 20;
+				nExpLost = m_iMaxExp / 5;
 
 			if ((pNpc->GetType() == NPC_GUARD_TOWER1 || pNpc->GetType() == NPC_GUARD_TOWER2) && isInPKZone())
 				noticeType = DeathNotice;
 
 			if (m_bPremiumType != 0)
-				nExpLost = nExpLost * (GetPremiumProperty(PremiumExpRestorePercent)) / 100;
+				nExpLost = nExpLost * (GetPremiumProperty(PremiumExpRestorePercent)) / 1;
 
 			ExpChange(-nExpLost);
 		}
