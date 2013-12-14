@@ -26,7 +26,7 @@
 #include "lvm.h"
 
 
-#define hasjumps(e)	((e)->t != (e)->f)
+#define hasjumps(e)        ((e)->t != (e)->f)
 
 
 static int isnumeral(expdesc *e) {
@@ -878,4 +878,3 @@ void luaK_setlist (FuncState *fs, int base, int nelems, int tostore) {
     luaX_syntaxerror(fs->ls, "constructor too long");
   fs->freereg = base + 1;  /* free registers with list values */
 }
-
