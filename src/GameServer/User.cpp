@@ -4349,6 +4349,26 @@ void CUser::OnDeath(Unit *pKiller)
                         ExpChange(-nExpLost);                        
                 }
                 else
+                { if (pKiller->isNPC())
+                {
+                        int64 nExpLost = 0;
+
+                        CNpc *pNpc = TO_NPC(pKiller);
+                        if (pNpc->GetType() == NPC_PATROL_GUARD || (GetZoneID() != GetNation() && GetZoneID() <= ELMORAD))
+                                nExpLost = m_iMaxExp / 100;
+                        else
+                                nExpLost = m_iMaxExp / 20;
+
+                        if ((pNpc->GetType() == NPC_GUARD_TOWER1 || pNpc->GetType() == NPC_GUARD_TOWER2) && isInPKZone())
+                                noticeType = DeathNotice;
+
+                        if (m_bPremiumType != 0)
+                                nExpLost = nExpLost * (GetPremiumProperty(PremiumExpRestorePercent)) / 100;
+
+                        g_pMain->WriteDeathUserLogFile(string_format("[ NPC/MONSTER - %d:%d:%d ] SID=%d,Killer=%s,Target=%s,Zone=%d,X=%d,Z=%d,TargetExp=%d,LostExp=%d\n",time.GetHour(),time.GetMinute(),time.GetSecond(),pNpc->m_sSid,pKiller->GetName().c_str(),GetName().c_str(),GetZoneID(),uint16(GetX()),uint16(GetZ()),m_iExp, nExpLost));
+                        ExpChange(-nExpLost);                        
+                }
+                else
                 {
                         CUser *pUser = TO_USER(pKiller);
 
