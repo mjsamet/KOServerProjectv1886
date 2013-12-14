@@ -492,6 +492,6 @@ uint8 CUser::GetBeefRoastVictory() { return g_pMain->m_BifrostVictory; }
 
 uint8 CUser::GetWarVictory() { return g_pMain->m_bVictory; }
 
-uint8 CUser::CheckMiddleStatueCapture() { return g_pMain->m_bMiddleStatueNation; }
+uint8 CUser::CheckMiddleStatueCapture() { return g_pMain->m_bMiddleStatueNation == GetNation() ? 1 : 0; }
 
 void CUser::MoveMiddleStatue() { Warp((GetNation() == KARUS ? DODO_CAMP_WARP_X : LAON_CAMP_WARP_X) + myrand(0, DODO_LAON_WARP_RADIUS) * 10,(GetNation() == KARUS ? DODO_CAMP_WARP_Z : LAON_CAMP_WARP_Z) + myrand(0, DODO_LAON_WARP_RADIUS) * 10); }
