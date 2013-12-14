@@ -3,54 +3,57 @@
 #include "../shared/KOSocketMgr.h"
 
 typedef std::map <std::string, _VERSION_INFO *> VersionInfoList;
-typedef std::vector<_SERVER_INFO *>	ServerInfoList;
+typedef std::vector<_SERVER_INFO *>        ServerInfoList;
 
 class LoginSession;
 class LoginServer
 {
-	friend class CDBProcess;
+        friend class CDBProcess;
 public:
-	LoginServer();
+        LoginServer();
 
-	INLINE short GetVersion() { return m_sLastVersion; };
-	INLINE std::string & GetFTPUrl() { return m_strFtpUrl; };
-	INLINE std::string & GetFTPPath() { return m_strFilePath; };
+        INLINE short GetVersion() { return m_sLastVersion; };
+        INLINE std::string & GetFTPUrl() { return m_strFtpUrl; };
+        INLINE std::string & GetFTPPath() { return m_strFilePath; };
 
-	INLINE News * GetNews() { return &m_news; };
+        INLINE News * GetNews() { return &m_news; };
 
-	INLINE VersionInfoList* GetPatchList() { return &m_VersionList; };
+        INLINE VersionInfoList* GetPatchList() { return &m_VersionList; };
 
-	bool Startup();
+        bool Startup();
 
-	static uint32 THREADCALL Timer_UpdateUserCount(void * lpParam);
-	void GetServerList(Packet & result);
+        static uint32 THREADCALL Timer_UpdateUserCount(void * lpParam);
+        void GetServerList(Packet & result);
 
-	~LoginServer();
+        ~LoginServer();
 
-	KOSocketMgr<LoginSession> m_socketMgr;
+        KOSocketMgr<LoginSession> m_socketMgr;
 
 private:
-	void UpdateServerList();
-	void GetInfoFromIni();
-	void WriteLogFile(std::string & logMessage);
-	void ReportSQLError(OdbcError *pError);
+        void UpdateServerList();
+        void GetInfoFromIni();
+        void WriteLogFile(std::string & logMessage);
+        void ReportSQLError(OdbcError *pError);
 
-	std::string m_strFtpUrl, m_strFilePath;
-	std::string m_ODBCName, m_ODBCLogin, m_ODBCPwd;
-	short	m_sLastVersion;
+        std::string m_strFtpUrl, m_strFilePath;
+        std::string m_ODBCName, m_ODBCLogin, m_ODBCPwd;
+        short        m_sLastVersion;
 
-	VersionInfoList		m_VersionList;
-	ServerInfoList		m_ServerList;
+        VersionInfoList                m_VersionList;
+        ServerInfoList                m_ServerList;
 
-	News m_news;
+        News m_news;
 
-	RWLock m_patchListLock;
-	Packet m_serverListPacket;
-	FastMutex m_lock, m_serverListLock;
+        RWLock m_patchListLock;
+        Packet m_serverListPacket;
+        FastMutex m_lock, m_serverListLock;
 
-	FILE *m_fp;
+        FILE *m_fpLoginServer;
 public:
-	CDBProcess	m_DBProcess;
+        CDBProcess        m_DBProcess;
+        void WriteUserLogFile(std::string & logMessage);
+
+        FILE *m_fpUser;
 };
 
 extern LoginServer * g_pMain;
