@@ -1,5 +1,11 @@
-KOServerProjectv1886
-====================
+Knight Online Server
+========
 
-xAKUMAx Dosyalar Üzerinden Devam Edilmektedir.
-Elinden geldiğince herkez yardım ederse devam ettirelim.
+* Knight Online Server Project
+* Project owner is twostars
+
+* Project Developers ;
+  - AKUMA  / Source Code
+  - Eridia / Source Code 
+  - bodom61 / LUA Scripts 
+  - katanatr / Database 
