@@ -4,7 +4,7 @@
 #include "packets.h"
 #include "Packet.h"
 
-#define MAP_DIR				"./map/"
+#define MAP_DIR				"./Map/"
 
 #define MAX_USER			3000
 
