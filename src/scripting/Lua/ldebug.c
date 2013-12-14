@@ -30,7 +30,7 @@
 
 
 
-#define noLuaClosure(f)		((f) == NULL || (f)->c.tt == LUA_TCCL)
+#define noLuaClosure(f)                ((f) == NULL || (f)->c.tt == LUA_TCCL)
 
 
 static const char *getfuncname (lua_State *L, CallInfo *ci, const char **name);
@@ -590,4 +590,3 @@ l_noret luaG_runerror (lua_State *L, const char *fmt, ...) {
   va_end(argp);
   luaG_errormsg(L);
 }
-
